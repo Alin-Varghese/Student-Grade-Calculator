@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#11998e,#38ef7d);
+        }
+
+        .container{
+            width:500px;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:8px 0;
+            border:2px solid #ddd;
+            border-radius:10px;
+            font-size:16px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:none;
+            border-radius:10px;
+            background:#28a745;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#218838;
+        }
+
+        table{
+            width:100%;
+            margin-top:20px;
+            border-collapse:collapse;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#28a745;
+            color:white;
+        }
+
+        th,td{
+            padding:12px;
+            text-align:center;
+        }
+
+        .print-btn{
+            background:#007bff;
+        }
+
+        .print-btn:hover{
+            background:#0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎓 Student Grade Calculator</h1>
+
+    <input type="number" id="s1" placeholder="Subject 1 Marks">
+    <input type="number" id="s2" placeholder="Subject 2 Marks">
+    <input type="number" id="s3" placeholder="Subject 3 Marks">
+    <input type="number" id="s4" placeholder="Subject 4 Marks">
+    <input type="number" id="s5" placeholder="Subject 5 Marks">
+
+    <button onclick="calculateGrade()">
+        Calculate Result
+    </button>
+
+    <table id="resultTable" style="display:none;">
+        <tr>
+            <th>Total Marks</th>
+            <th>Average</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td id="total"></td>
+            <td id="average"></td>
+            <td id="grade"></td>
+        </tr>
+    </table>
+
+    <button class="print-btn"
+            onclick="window.print()">
+        🖨 Print Result
+    </button>
+
+</div>
+
+<script>
+
+function calculateGrade(){
+
+    let s1 = Number(document.getElementById("s1").value);
+    let s2 = Number(document.getElementById("s2").value);
+    let s3 = Number(document.getElementById("s3").value);
+    let s4 = Number(document.getElementById("s4").value);
+    let s5 = Number(document.getElementById("s5").value);
+
+    let total = s1+s2+s3+s4+s5;
+    let average = total/5;
+
+    let grade;
+
+    if(average>=90){
+        grade="A";
+    }
+    else if(average>=75){
+        grade="B";
+    }
+    else if(average>=50){
+        grade="C";
+    }
+    else{
+        grade="F";
+    }
+
+    document.getElementById("total").innerHTML=total;
+    document.getElementById("average").innerHTML=average.toFixed(2);
+    document.getElementById("grade").innerHTML=grade;
+
+    document.getElementById("resultTable").style.display="table";
+}
+
+</script>
+
+</body>
+</html>
